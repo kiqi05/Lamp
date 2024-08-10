@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝚋𝚢 𝚖𝚊𝚜 𝚙𝚎</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        #lamp {
+            width: 100px;
+            height: 150px;
+            background-color: #FDF5E6;
+            margin: 0 auto;
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            top: 0;
+            transition: background-color 0.5s;
+        }
+
+        #rope {
+            width: 2px;
+            height: 200px;
+            background-color: white;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        #rope::after {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 10px auto;
+        }
+
+        #scrolling-text {
+            margin-top: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        #scrolling-text div {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll 10s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {transform: translateX(100%);}
+            to {transform: translateX(-100%);}
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="lamp"></div>
+        <div id="rope" onclick="toggleLight()"></div>
+        <div id="scrolling-text">
+            <div id="text">🤪clorott🔥</div>
+        </div>
+        <audio id="song" src="lagu.mp3"></audio>
+    </div>
+
+    <script>
+        let lightOn = false;
+
+        function toggleLight() {
+            const lamp = document.getElementById('lamp');
+            const song = document.getElementById('song');
+            const text = document.getElementById('text');
+
+            lightOn = !lightOn;
+            if (lightOn) {
+                lamp.style.backgroundColor = 'yellow';
+                song.play();
+                text.style.animationPlayState = 'running';
+            } else {
+                lamp.style.backgroundColor = 'grey';
+                song.pause();
+                text.style.animationPlayState = 'paused';
+            }
+        }
+    </script>
+</body>
+</html>
